@@ -1,4 +1,4 @@
 
-public class Pessoa {
-
+public class Pessoa extends Figurinhas{
+	private int amigos;
 }
