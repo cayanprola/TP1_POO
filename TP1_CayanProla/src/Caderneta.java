@@ -14,7 +14,7 @@ public class Caderneta	{
 	public String[] getSelecao() {
 		return this.selecao;
 	}
-	public void setColor(String selecao[]) {
+	public void setSelecao(String selecao[]) {
 		this.selecao = selecao;
 	}
 	public int getIndex( ) {

@@ -1,21 +1,20 @@
 
 public class Figurinhas extends Caderneta {
 	private int qtd;
-	private boolean rptd;
+//	private boolean rptd;
 	
 	//Constructors
 	Figurinhas() {
 		super();
 	}
 	
-	Figurinhas(int qtd, boolean rptd) {
+	Figurinhas(int qtd) {
 		super();
 	}
 	
-	Figurinhas(String selecao[], int index, int qtd, boolean rptd) {
+	Figurinhas(int qtd, String selecao[], int index) {
 		super(selecao, index);
 		this.qtd = qtd;
-		this.rptd = rptd;
 	}
 	
 	//Setters & Getters
@@ -26,10 +25,10 @@ public class Figurinhas extends Caderneta {
 		this.qtd = qtd;
 	}
 	
-	public boolean getRptd() {
-		return this.rptd;
-	}
-	public void setRptd(boolean rptd) {
-		this.rptd = rptd;
-	}
+//	public boolean getRptd() {
+//		return this.rptd;
+//	}
+//	public void setRptd(boolean rptd) {
+//		this.rptd = rptd;
+//	}
 }
