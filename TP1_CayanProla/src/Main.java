@@ -11,29 +11,45 @@ public class Main {
 				"JPN","BEL","CAN","MAR","CRO","BRA","SRB","SUI","CMR","POR",
 				"GHA","URU", "KOR"};
 		
-		int numCromosP = sc.nextInt();
-		
 		Figurinhas fp = new Figurinhas();
+		Caderneta cp = new Caderneta();
+		Pessoa p = new Pessoa();
+
+		int numCromosP = sc.nextInt();
 		fp.setQtd(numCromosP);
 		System.out.println(fp.getQtd());
 		
-		Caderneta c = new Caderneta();
 		
+		int numAmigos = sc.nextInt();
+		p.setAmigos(numAmigos);
+		System.out.println(p.getAmigos());
 		
-		
-		
-		
-		
-		/*
-		 * try{ Scanner sc = new Scanner(new File("input1.txt") );
-		 * 
-		 * int n = sc.nextInt(); for(int i=0; i<n; i++){ System.out.print(sc.next() +
-		 * ";"); System.out.println(sc.nextInt()); } int a = sc.nextInt(); for(int i=0;
-		 * i<a; i++){ n = sc.nextInt(); System.out.println("amigo :" + n); for(int j=0;
-		 * j<n; j++){ System.out.print(sc.next() + ";");
-		 * System.out.println(sc.nextInt()); } } sc.close(); } catch(Exception e){
-		 * System.out.println("Error"); }
-		 */
+		try {
+			Scanner sc = new Scanner(new File("input1.txt"));
+			int n = sc.nextInt();
+			for (int i = 0; i < n; i++) {
+				System.out.print(sc.next() + ";");
+				System.out.println(sc.nextInt());
+			}
+			int a = sc.nextInt();
+
+			for (int i = 0; i < a; i++) {
+				n = sc.nextInt();
+				System.out.println("amigo :" + n);
+				for (int j = 0; j < n; j++) {
+					System.out.print(sc.next() + ";");
+					System.out.println(sc.nextInt());
+				}
+			}
+			sc.close();
+		} catch (Exception e) {
+			System.out.println("Error");
+		}
+}
+
+	public void inputUser() {
+
 	}
+	
 
 }
