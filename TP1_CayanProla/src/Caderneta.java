@@ -25,7 +25,7 @@ public class Caderneta	{
 	}
 	
 	
-	
+	//comparar cadernetas
 	
 	void printC() {
 		for(int i = 0; i < selecao.length; i++) {
