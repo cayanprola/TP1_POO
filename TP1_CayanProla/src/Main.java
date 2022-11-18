@@ -1,64 +1,44 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 //@author Cayan Prola
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
-		
-		String[] s = new String[]{"QAT","ECU","SEN","NED","ENG","IRN","USA","WAL",
-				"ARG","KSA","MEX","POL","FRA","AUS","DEN","TUN","ESP","CRC","GER",
-				"JPN","BEL","CAN","MAR","CRO","BRA","SRB","SUI","CMR","POR",
-				"GHA","URU", "KOR"};
-		
-		Figurinhas fp = new Figurinhas();
-		Caderneta cp = new Caderneta();
-		Pessoa p = new Pessoa();
-		cp.setSelecao(s);
-				
-		
-		
+		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
+				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
+				"CMR", "POR", "GHA", "URU", "KOR" };
+		String[] o = {};
+		String p = "";
+		int k = 0;
+		Figurinhas fp = new Figurinhas(k, o);
+		Caderneta cp = new Caderneta(o);
+
 		try {
-			Scanner sf = new Scanner(new File("teste.txt"));
-			
-			//Le o ficheiro e da print na seleçao/index e tambem na qtd de cada figurinha
-			int n = sf.nextInt();
-			for (int i = 0; i < n; i++) { 
-				System.out.print(sf.next() + ";");
-				System.out.println(sf.nextInt());
+			Scanner sc = new Scanner(new File("input1.txt"));
+
+			int n = sc.nextInt();
+			for (int i = 0; i < n; i++) {
+				p = sc.next();
+				System.out.print(p + ";");
+				System.out.println(sc.nextInt());
 			}
-			
-			//Da print aos valores dos amigos
-			//qtd de amigos, depois suas figurinhas
-			
-			int a = sf.nextInt();
+			int a = sc.nextInt();
 			for (int i = 0; i < a; i++) {
-				n = sf.nextInt();
+				n = sc.nextInt();
 				System.out.println("amigo: " + i);
 				for (int j = 0; j < n; j++) {
-					
-					System.out.print(sf.next() + ";");
-					System.out.println(sf.nextInt());
+					System.out.print(sc.next() + ";");
+					System.out.println(sc.nextInt());
 				}
 			}
-			
-			//Inputs txt pros objetos
-			for(int i = 0; i < n; i++) {
-				cp.setIndex(i);
-				fp.printC(cp.getIndex());
-			}
-			
-			sf.close();
+			sc.close();
 		} catch (Exception e) {
 			System.out.println("Error");
 		}
-	
-	
-	
-	
-	
+
 	}
 }
