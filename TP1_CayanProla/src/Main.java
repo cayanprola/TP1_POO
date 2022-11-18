@@ -11,34 +11,38 @@ public class Main {
 		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
 				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
 				"CMR", "POR", "GHA", "URU", "KOR" };
-		String[] o = {};
-		String p = "";
-		int k = 0;
-		Figurinhas fp = new Figurinhas(k, o);
-		Caderneta cp = new Caderneta(o);
+		
+		String selecao = "";
+		int index = 0, qtd = 0;
+		
+		Figurinhas fp = new Figurinhas(qtd, selecao, index);
+		Caderneta cp = new Caderneta(selecao, index);
 
 		try {
 			Scanner sc = new Scanner(new File("input1.txt"));
 
 			int n = sc.nextInt();
 			for (int i = 0; i < n; i++) {
-				p = sc.next();
-				System.out.print(p + ";");
-				System.out.println(sc.nextInt());
+				cp.setSelecao(sc.next());
+				cp.setIndex(sc.nextInt());
+				System.out.print(cp.getSelecao() + "; ");
+				System.out.println(cp.getIndex());
 			}
 			int a = sc.nextInt();
 			for (int i = 0; i < a; i++) {
 				n = sc.nextInt();
 				System.out.println("amigo: " + i);
 				for (int j = 0; j < n; j++) {
-					System.out.print(sc.next() + ";");
-					System.out.println(sc.nextInt());
+					cp.setSelecao(sc.next());
+					cp.setIndex(sc.nextInt());
+					System.out.print(cp.getSelecao() + "; ");
+					System.out.println(cp.getIndex());
 				}
 			}
 			sc.close();
 		} catch (Exception e) {
 			System.out.println("Error");
 		}
-
+		
 	}
 }

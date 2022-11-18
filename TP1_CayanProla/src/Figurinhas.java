@@ -4,8 +4,8 @@ public class Figurinhas extends Caderneta {
 //	private boolean rptd;
 
 	// Constructors
-	Figurinhas(int qtd, String[] selecao) {
-		super(selecao);
+	Figurinhas(int qtd, String selecao, int index) {
+		super(selecao, index);
 		this.qtd = qtd;
 	}
 
