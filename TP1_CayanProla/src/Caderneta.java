@@ -1,11 +1,13 @@
+import java.util.Arrays;
 
 public class Caderneta {
-	private String selecao;
-	private int index;
 
-	Caderneta(String selecao, int index) {
+	private String selecao;
+
+	Caderneta() {
+	}
+	Caderneta(String selecao) {
 			this.selecao = selecao;
-			this.index = index;
 	}
 
 	// Setters & Getters
@@ -17,20 +19,13 @@ public class Caderneta {
 		this.selecao = selecao;
 	}
 
-	public int getIndex() {
-		return this.index;
-	}
-
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
 	// comparar cadernetas
 
-//	void printC() {
-//		for (int i = 0; i < selecao; i++) {
-//			System.out.println(selecao + "; ");
-//		}
+	public  void printC(Caderneta c) {
+		for (int i = 0; i <4; i++) {
+			System.out.println();
+		}
 
 	}
 
+}
