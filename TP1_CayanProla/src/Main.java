@@ -47,7 +47,7 @@ public class Main {
 					qtd[j] = sc.nextInt();
 				}
 
-				fp[i].setSelecao(s2);
+				fp[i].setSelecao(s2);s
 				fp[i].setQtd(qtd);
 				fp[i].printC();
 
