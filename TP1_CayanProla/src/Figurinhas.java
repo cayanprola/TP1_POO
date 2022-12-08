@@ -1,33 +1,37 @@
-import java.util.Arrays;
-
-public class Figurinhas extends Caderneta {
-	private int qtd;
-//	private boolean rptd;
+public class Figurinhas {
+	private int qtd[] = new int[400];
+	private String selecao[] = new String[400];
 
 	// Constructors
-	Figurinhas(int qtd, String selecao) {
-		super(selecao);
-		this.qtd = qtd;
+	Figurinhas(int newQtd[], String[] newSelecao) {
+		
+			this.selecao = newSelecao;
+			this.qtd = newQtd;
 	}
 
 	// Setters & Getters
-	public int getQtd() {
+	public int[] getQtd() {
 		return this.qtd;
 	}
 
-	public void setQtd(int qtd) {
-		this.qtd = qtd;
+	public void setQtd(int newQtd[]) {
+			this.qtd = newQtd;
 	}
-	
-	public String printC() {
-	
-			return this.getSelecao() + "; " + this.getQtd();
-		
+
+	public String[] getSelecao() {
+		return this.selecao;
 	}
-//	public boolean getRptd() {
-//		return this.rptd;
-//	}
-//	public void setRptd(boolean rptd) {
-//		this.rptd = rptd;
-//	}
+
+	public void setSelecao(String[] newSelecao) {
+			this.selecao = newSelecao;
+	}
+
+	public void printC() {
+		int cont = 1;
+		for (int i = 0; i < 40; i++) {
+			System.out.println(this.selecao[i] + "; " + this.qtd[i]);
+//			System.out.println(cont);
+			cont += 1;
+		}
+	}
 }
