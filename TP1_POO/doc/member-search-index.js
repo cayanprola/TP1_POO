@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"<Unnamed>","c":"Pessoa","l":"getAmigos()"},{"p":"<Unnamed>","c":"Pessoa","l":"setAmigos(int)"}];updateSearchResults();
