@@ -1,56 +1,103 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
+
+//@author Cayan Prola
 
 public class Main {
 
-	public static void main(String[] args) {
+	static String strA[], strP[];
+	static int qtd[], qtdA[], necessito[], troco[];
+	static int albumP[][], albumA[][];
+	static Figurinhas fp = new Figurinhas(qtd, strP, albumP);
+	static Figurinhas[] fa;
+
+	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-//		Scanner sc = new Scanner(System.in);
-//		String s[] = new String[]{"QAT","ECU","SEN","NED","ENG","IRN","USA","WAL",
-//				"ARG","KSA","MEX","POL","FRA","AUS","DEN","TUN","ESP","CRC","GER",
-//				"JPN","BEL","CAN","MAR","CRO","BRA","SRB","SUI","CMR","POR",
-//				"GHA","URU", "KOR"};
-//		
-//		Figurinhas fp = new Figurinhas();
-//		Caderneta cp = new Caderneta();
-//		Pessoa p = new Pessoa();
-//
-//		int numCromosP = sc.nextInt();
-//		fp.setQtd(numCromosP);
-//		System.out.println(fp.getQtd());
-//		
-//		
-//		int numAmigos = sc.nextInt();
-//		p.setAmigos(numAmigos);
-//		System.out.println(p.getAmigos());
-//		
-		
+//		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
+//				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
+//				"CMR", "POR", "GHA", "URU", "KOR" };
+
 		try {
-			Scanner sf = new Scanner(new File("teste.txt"));
-			int n = sf.nextInt();
+			Scanner sc = new Scanner(new File("input1.txt"));
+			int n = sc.nextInt();
+			strP = new String[n];// Adicionar a quantidade total de figurinhas como o tamanho dos arrays
+			qtd = new int[n];
+			troco = new int[n];
+			albumP = new int[n][2];
+
+			int cont = 0;
 			for (int i = 0; i < n; i++) {
-				System.out.print(sf.next() + ";");
-				System.out.println(sf.nextInt());
+				cont += 1;
+				strP[i] = sc.next(); // Salva as os valores em arrays e adiciona os no objeto para o user
+				qtd[i] = sc.nextInt();
+				albumP[i][0] = cont;
+				albumP[i][1] = qtd[i];
+				if (cont == 20)
+					cont = 0;
 			}
-			int a = sf.nextInt();
+			cont = 0;
 
-			for (int i = 0; i < a; i++) {
-				n = sf.nextInt();
-				System.out.println("amigo: " + i);
+			fp.setAlbum(albumP);
+			fp.printA();
+			fp.setSelecao(strP);
+			fp.setQtd(qtd);
+//			fp.printC();
+
+			int a = sc.nextInt(); // Bloco de codigo que repete o de cima para os amigos
+			fa = new Figurinhas[a]; //
+
+			for (int i = 0; i < a; i++) { // Adicionar a quantidade total de figurinhas dos amigos nos arrays
+				n = sc.nextInt();
+				strA = new String[n];
+				qtdA = new int[n];
+				albumA = new int[n][2];
+				fa[i] = new Figurinhas(qtdA, strA, albumA);
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("amigo: " + (i + 1));
 				for (int j = 0; j < n; j++) {
-					System.out.print(sf.next() + ";");
-					System.out.println(sf.nextInt());
+					cont += 1;
+					strA[j] = sc.next();
+					qtdA[j] = sc.nextInt();
+					albumA[j][0] = cont;
+					albumA[j][1] = qtdA[j];
+					if (cont == 20)
+						cont = 0;
 				}
+				fa[i].setAlbum(albumA);
+				fa[i].printA();
+				fa[i].setSelecao(strA);
+				fa[i].setQtd(qtdA);
+//				fa[i].printC();
 			}
-			sf.close();
+			sc.close();
 		} catch (Exception e) {
-			System.out.println("Error");
+			e.printStackTrace();
 		}
-}
-
-	public void inputUser() {
-
+//		fp[0].printC();
+//		for(int i = 0; i < 5; i++) {      //print de todos os valores pra teste
+//			fp[i].printC();
+//		}
 	}
+
+	//Methods
 	
+	public static void verifica() {
+		int cont = 0;
+		for (int i = 0; i < qtd.length; i++) {
+			if (qtd[i] == 0) {
+				cont += 1;
+				necessito = new int[cont];
+			}
+
+			else if (qtd[i] > 1) {
+				troco[i] = qtd[i];
+			}
+
+		}
+		for (int i = 0; i < necessito.length; i++) {
+			System.out.println(necessito[i]);
+		}
+	}
 
 }
