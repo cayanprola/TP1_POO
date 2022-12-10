@@ -1,26 +1,25 @@
 
 public class Caderneta {
-	private Figurinhas e = new Figurinhas();
-	private int album[][] = new int[640][2];
+	private Figurinhas f = new Figurinhas();
 
-	Caderneta(int newAlbum[][]) {
-		this.album = newAlbum;
+	// Constructors
+	Caderneta(Figurinhas newF) {
+		this.f = newF;
 	}
 
 	// Setters & Getters
-	public int[][] getAlbum() {
-		return this.album;
+
+	// Getters
+	public Figurinhas getF() {
+		return this.f;
 	}
 
-	public void setAlbum(int newAlbum[][]) {
-		this.album = newAlbum;
+	// Setters
+	public void setF(Figurinhas newF) {
+		this.f = newF;
 	}
 
-	// Methods
-	public void printA() { // Metodo para printar o index e a quantidade de cada selecao, usado para
-		// efetuar as trocas
-		for (int i = 0; i < album.length; i++) {
-			System.out.println(this.album[i][0] + "; " + this.album[i][1]);
-		}
+	public void printP() {
+		f.printA();
 	}
 }

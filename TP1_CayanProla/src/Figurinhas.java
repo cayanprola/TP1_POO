@@ -1,13 +1,14 @@
 public class Figurinhas {
-	private int qtd[] = new int[640];
-	private boolean rptd[] = new boolean[640];
-	private String selecao[] = new String[640];
-	private int album[][] = new int[640][2];
+	private int qtd[] = new int[640]; // Quantidade de figs
+//	private boolean rptd[] = new boolean[640];
+	private String selecao[] = new String[640]; // Salva a string com index
+	private int album[][] = new int[640][2]; // Salva o index e a quantidade de cada figurinha
 
 	// Constructors
 	Figurinhas() {
-		
+
 	}
+
 	Figurinhas(int newQtd[], String[] newSelecao, int newAlbum[][]) {
 		this.album = newAlbum;
 		this.selecao = newSelecao;
@@ -42,12 +43,13 @@ public class Figurinhas {
 		this.selecao = newSelecao;
 	}
 
-	//Methods
+	// Methods
 	public void printA() { // Metodo para printar o index e a quantidade de cada selecao, usado para
 							// efetuar as trocas
 		for (int i = 0; i < album.length; i++) {
-			System.out.println(this.album[i][0] + "; " + this.album[i][1]);
+			System.out.println(this.selecao[i] + "; " + this.album[i][1]);
 		}
+
 	}
 
 	public void printC() { // Metodo que printa a string, o index e a selecao
@@ -58,6 +60,6 @@ public class Figurinhas {
 			cont += 1;
 		}
 	}
-	
-	//Metodos para adicionar e remover figurinhas, 
+
+	// Metodos para adicionar e remover figurinhas,
 }
