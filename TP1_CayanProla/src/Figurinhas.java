@@ -1,9 +1,13 @@
 public class Figurinhas {
 	private int qtd[] = new int[640];
+	private boolean rptd[] = new boolean[640];
 	private String selecao[] = new String[640];
 	private int album[][] = new int[640][2];
 
 	// Constructors
+	Figurinhas() {
+		
+	}
 	Figurinhas(int newQtd[], String[] newSelecao, int newAlbum[][]) {
 		this.album = newAlbum;
 		this.selecao = newSelecao;
@@ -54,4 +58,6 @@ public class Figurinhas {
 			cont += 1;
 		}
 	}
+	
+	//Metodos para adicionar e remover figurinhas, 
 }
