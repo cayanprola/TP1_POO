@@ -2,15 +2,15 @@ public class Figurinhas {
 	private int qtd[] = new int[640]; // Quantidade de figs
 //	private boolean rptd[] = new boolean[640];
 	private String selecao[] = new String[640]; // Salva a string com index
-	private int album[][] = new int[640][2]; // Salva o index e a quantidade de cada figurinha
+	private int colecao[][] = new int[640][2]; // Salva o index na coluna 1 e a quantidade de cada figurinha na coluna 2
 
 	// Constructors
 	Figurinhas() {
 
 	}
 
-	Figurinhas(int newQtd[], String[] newSelecao, int newAlbum[][]) {
-		this.album = newAlbum;
+	Figurinhas(int newQtd[], String[] newSelecao, int newColecao[][]) {
+		this.colecao = newColecao;
 		this.selecao = newSelecao;
 		this.qtd = newQtd;
 	}
@@ -26,8 +26,8 @@ public class Figurinhas {
 		return this.selecao;
 	}
 
-	public int[][] getAlbum() {
-		return this.album;
+	public int[][] getColecao() {
+		return this.colecao;
 	}
 
 	// Setters
@@ -35,8 +35,8 @@ public class Figurinhas {
 		this.qtd = newQtd;
 	}
 
-	public void setAlbum(int newAlbum[][]) {
-		this.album = newAlbum;
+	public void setColecao(int newColecao[][]) {
+		this.colecao = newColecao;
 	}
 
 	public void setSelecao(String[] newSelecao) {
@@ -46,8 +46,8 @@ public class Figurinhas {
 	// Methods
 	public void printA() { // Metodo para printar o index e a quantidade de cada selecao, usado para
 							// efetuar as trocas
-		for (int i = 0; i < album.length; i++) {
-			System.out.println(this.selecao[i] + "; " + this.album[i][1]);
+		for (int i = 0; i < colecao.length; i++) {
+			System.out.println(this.selecao[i] + "; " + this.colecao[i][1]);
 		}
 
 	}
