@@ -1,20 +1,20 @@
 
 public class Amigos {
 	private Figurinhas fa = new Figurinhas();
-	private int index[];
-	private int trocas[];
+	private int index;
+	private int trocas;
 
 	// Constructors
 	Amigos(Figurinhas newFa) {
 		this.fa = newFa;
 	}
 
-	Amigos(Figurinhas newFa, int newIndex[]) {
+	Amigos(Figurinhas newFa, int newIndex) {
 		this.fa = newFa;
 		this.index = newIndex;
 	}
 
-	Amigos(Figurinhas newFa, int newIndex[], int[] newTrocas) {
+	Amigos(Figurinhas newFa, int newIndex, int newTrocas) {
 		this.fa = newFa;
 		this.index = newIndex;
 		this.trocas = newTrocas;
@@ -27,11 +27,11 @@ public class Amigos {
 		return this.fa;
 	}
 
-	public int[] getIndex() {
+	public int getIndex() {
 		return this.index;
 	}
 
-	public int[] getTrocas() {
+	public int getTrocas() {
 		return this.trocas;
 	}
 
@@ -40,11 +40,11 @@ public class Amigos {
 		this.fa = newFa;
 	}
 
-	public void setIndex(int newIndex[]) {
+	public void setIndex(int newIndex) {
 		this.index = newIndex;
 	}
 
-	public void setTrocas(int[] newTrocas) {
+	public void setTrocas(int newTrocas) {
 		this.trocas = newTrocas;
 	}
 
@@ -53,10 +53,10 @@ public class Amigos {
 		fa.printA();
 	}
 
-	public void greedy() {
-		for (int i = 0; i < index.length; i++) {
+	public void greedy(int a, int trocas[], int index[]) {
+		for (int i = 0; i < a; i++) {
 			int maxIndex = i;
-			for (int j = i + 1; j < index.length; j++) {
+			for (int j = i + 1; j < a; j++) {
 				if (trocas[j] > trocas[maxIndex]) {
 					maxIndex = j;
 				}
@@ -71,20 +71,19 @@ public class Amigos {
 		}
 	}
 
-	public void arrIndex() {
-
+	public int[][] arrIndex() {
+		return fa.getColecao();
 	}
 
 	public void printI(int i) {
-		System.out.println("Index: " + this.index[i]);
+		System.out.println("Index: " + this.index);
 	}
 
 	public void printT(int i) {
-		System.out.println("Trocas: " + this.trocas[i]);
+		System.out.println("Trocas: " + this.trocas);
 	}
 
 	public void printIT(int i) {
-		System.out.println("Index: " + this.index[i] + " Trocas: " + this.trocas[i]);
-
+		System.out.println("Index: " + this.index + " Trocas: " + this.trocas);
 	}
 }
