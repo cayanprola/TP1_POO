@@ -1,6 +1,5 @@
 public class Figurinhas {
 	private int qtd[] = new int[640]; // Quantidade de figs
-//	private boolean rptd[] = new boolean[640];
 	private String selecao[] = new String[640]; // Salva a string com index
 	private int colecao[][] = new int[640][2]; // Salva o index na coluna 1 e a quantidade de cada figurinha na coluna 2
 

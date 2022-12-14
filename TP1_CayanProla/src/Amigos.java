@@ -5,19 +5,11 @@ public class Amigos {
 	private int trocas;
 
 	// Constructors
-	Amigos(Figurinhas newFa) {
-		this.fa = newFa;
-	}
-
-	Amigos(Figurinhas newFa, int newIndex) {
-		this.fa = newFa;
-		this.index = newIndex;
-	}
-
 	Amigos(Figurinhas newFa, int newIndex, int newTrocas) {
 		this.fa = newFa;
 		this.index = newIndex;
 		this.trocas = newTrocas;
+
 	}
 
 	// Setters & Getters

@@ -88,13 +88,10 @@ public class Main {
 
 			}
 			indexT(a, amg);
-			for (int i = 0; i < a; i++) {
-				Arrays.sort(indexSort);
-				System.out.println(amg[i].getIndex());
-				System.out.println(amg[i].getTrocas());
-				System.out.println("_________________________");
-			}
 
+			for (int i = 0; i < a; i++) {
+				amg[i].printIT(i);
+			}
 			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,15 +115,22 @@ public class Main {
 		for (int i = 0; i < amg.length; i++) {
 
 			s[i].greedy(a, trocasSort, indexSort); // Sort no valor das trocas usando a estrategia greedy
-			Arrays.sort(indexSort); // Da sort no index dos amigos baseado em quantas trocas conseguimos fazer com
+			Arrays.sort(indexSort);
+			// Da sort no index dos amigos baseado em quantas trocas conseguimos fazer com
 			// eles e seta o seu novo index
 			s[i].setIndex(indexSort[i]);
 			s[i].setTrocas(trocasSort[i]);
-
-			s[i].printIT(i);
 		}
 	}
-	// Fazer as trocas primeiro com amg[0] ate amigo [4]
+
+	public static void t() {
+		for (int i = 0; i < amg.length; i++) {
+			if (amg[i].getIndex() == 1) {
+				albumA = amg[0].getFa().getColecao();
+
+			}
+		}
+		// Fazer as trocas primeiro com amg[0] ate amigo [4]
 //	public static void trade() {
 //		int contR = 0;// Contador para manter as trocas 1:1
 //		int contD = 0;
@@ -168,6 +172,7 @@ public class Main {
 //					System.out.println("Dei: " + strP[k]);
 //				}
 
+	}
 }
 
 //Algoritmo pras trocas
