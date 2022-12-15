@@ -112,6 +112,20 @@ public class Main {
 		return trocas;
 	}
 
+	public static void trocasAmg(Amigos amg[]) {
+		int trocasMax = Arrays.stream(trocasSort).max().getAsInt();
+		for (int j = 0; j < amg.length; j++) {
+			for (int i = 0; i < amg.length; i++) {
+				if (amg[i].getTrocas() == trocasMax) {
+					System.out.println("Amigo: " + amg[i].getIndex());
+					System.out.println();
+					amg[i].getFa().troca(fp, fa[i], trocasMax);
+				}
+			}
+			trocasMax -= 1;
+		}
+	}
+
 	@Deprecated
 	public static void amigosSort(int a, Amigos s[]) {
 		/*
@@ -131,34 +145,4 @@ public class Main {
 			System.out.println("-------------------");
 		}
 	}
-
-	public static void trocasAmg(Amigos amg[]) {
-		int trocasMax = Arrays.stream(trocasSort).max().getAsInt();
-		for (int j = 0; j < amg.length; j++) {
-			for (int i = 0; i < amg.length; i++) {
-				if (amg[i].getTrocas() == trocasMax) {
-					System.out.println("Amigo: " + amg[i].getIndex());
-					System.out.println("Trocas Max: " + trocasMax);
-					amg[i].getFa().troca(fp, fa[i], trocasMax);
-				}
-			}
-			trocasMax -= 1;
-		}
-	}
-//	public static void sortIndex() {
-//		for(int i = 0; i < amg.length; i++) {
-//			if(amg[i].getTrocas() == greedy()) {
-//				
-//			}
-//		}
-//	}
 }
-
-//Algoritmo pras trocas
-//albumP[i][1] += 1;
-//albumA[i][1] -= 1;
-//System.out.println("Recebi: " + strT[i]);
-
-//else if (albumP[i][1] > 1 && albumA[i][1] == 0) {
-//albumA[i][1] += 1;
-//albumP[i][1] -= 1;
