@@ -5,37 +5,37 @@ import java.util.*;
 //@author Cayan Prola & Ricardo Costa
 
 public class Main {
-
-	static String strA[], strP[];
-	static int qtd[], qtdA[];
-	static int albumP[][], albumA[][];
+	//Uso dos padroes P para nos e A para os amigos
+	static String strP[], strA[]; 
+	static int qtdP[], qtdA[];
+	static int colecaoP[][], colecaoA[][]; //Colecao P pra nos, A para os amigos
 	static int trocasSort[], indexSort[];
-	static Figurinhas fp = new Figurinhas(qtd, strP, albumP);
-	static Figurinhas fa = new Figurinhas(qtdA, strA, albumA);
-	static Caderneta cp = new Caderneta(fp);
-	static Amigos amg[];
-	static int trocas, index = 0;
+	static Figurinhas fp = new Figurinhas(qtdP, strP, colecaoP); //Figurinhas para nos
+	static Caderneta cp = new Caderneta(fp); //Cadernetas para nos
+	static Figurinhas fa[]; //Figurinhas pros amigos
+	static Amigos amg[]; 
+	static int trocas, index;
 
 	public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 //		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
-//				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
+//				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "S1UI",
 //				"CMR", "POR", "GHA", "URU", "KOR" };
 
 		try {
 			Scanner sc = new Scanner(new File("input1.txt"));
 			int n = sc.nextInt();
 			strP = new String[n];// Adicionar a quantidade total de figurinhas como o tamanho dos arrays
-			qtd = new int[n];
-			albumP = new int[n][2];
+			qtdP = new int[n];
+			colecaoP = new int[n][2];
 
 			int cont = 0;
 			for (int i = 0; i < n; i++) {
 				cont += 1;
 				strP[i] = sc.next(); // Salva as os valores do txt em arrays
-				qtd[i] = sc.nextInt();
-				albumP[i][0] = cont;
-				albumP[i][1] = qtd[i];
+				qtdP[i] = sc.nextInt();
+				colecaoP[i][0] = cont;
+				colecaoP[i][1] = qtdP[i];
 				/*
 				 * Uso de um contador para os indexes da selecao e reseta pra ser sempre ate 20
 				 * Usado para efetuar as trocas depois
@@ -46,29 +46,31 @@ public class Main {
 			}
 			cont = 0;
 			// Setar os valores das figurinhas e seus atributos para nós
-			fp.setColecao(albumP);
+			fp.setColecao(colecaoP);
 			fp.setSelecao(strP);
-			fp.setQtd(qtd);
+			fp.setQtd(qtdP);
 			cp.setF(fp);
 //			cp.printP();
 
 			int a = sc.nextInt(); // Bloco de codigo que repete o de cima mas para os amigos
-			amg = new Amigos[a]; //
+			amg = new Amigos[a];
+			fa = new Figurinhas[a];
 			trocasSort = new int[a];
 			indexSort = new int[a];
 			for (int i = 0; i < a; i++) { // Adicionar a quantidade total de figurinhas dos amigos nos arrays
 				n = sc.nextInt(); // Define o tamanho dos arrays para a quantidade exata de figurinhas
 				strA = new String[n];
 				qtdA = new int[n];
-				albumA = new int[n][2];
-				amg[i] = new Amigos(fa, index, trocas); // Define a quantidade de amigos
+				colecaoA = new int[n][2];
+				fa[i] = new Figurinhas(qtdA, strA, colecaoA);
+				amg[i] = new Amigos(fa[i], index, trocas); // Define a quantidade de amigos
 				index += 1;
 				for (int j = 0; j < n; j++) {
 					cont += 1;
 					strA[j] = sc.next();
 					qtdA[j] = sc.nextInt();
-					albumA[j][0] = cont;
-					albumA[j][1] = qtdA[j];
+					colecaoA[j][0] = cont;
+					colecaoA[j][1] = qtdA[j];
 					if (cont == 20)
 						cont = 0;
 				}
@@ -77,21 +79,17 @@ public class Main {
 				 * Seta os valores e atributos para todos os amigos, com a adiçao do seu index e
 				 * quantas trocas conseguimos fazer com cada um
 				 */
-				fa.setColecao(albumA);
-				fa.setSelecao(strA);
-				fa.setQtd(qtdA);
-				amg[i].setFa(fa);
+				fa[i].setSelecao(strA);
+				fa[i].setQtd(qtdA);
+				amg[i].setFa(fa[i]);
 				amg[i].setIndex(index);
-				amg[i].setTrocas(verifica());
+				amg[i].setTrocas(contTroca());
 				indexSort[i] = index;
-				trocasSort[i] = verifica();
+				trocasSort[i] = contTroca();
 
 			}
-			indexT(a, amg);
+			amigosSort(a, amg);//Funçao que da sort no index e nas trocas dos amigos
 
-			for (int i = 0; i < a; i++) {
-				amg[i].printIT(i);
-			}
 			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,10 +97,10 @@ public class Main {
 	}
 
 	// Methods
-	public static int verifica() {
+	public static int contTroca() {
 		trocas = 0;
-		for (int i = 0; i < qtd.length; i++) {
-			if (albumP[i][1] == 0 && albumA[i][1] > 1) {
+		for (int i = 0; i < qtdP.length; i++) {
+			if (colecaoP[i][1] == 0 && colecaoA[i][1] > 1) {
 				trocas += 1;
 
 			}
@@ -110,10 +108,10 @@ public class Main {
 		return trocas;
 	}
 
-	public static void indexT(int a, Amigos s[]) { // Metodo que chama a funçao greedy para os amigos e seta seus novos
-													// valores
+	public static void amigosSort(int a, Amigos s[]) { // Metodo que chama a funcao greedy para os amigos e seta seus
+														// novos
+														// valores
 		for (int i = 0; i < amg.length; i++) {
-
 			s[i].greedy(a, trocasSort, indexSort); // Sort no valor das trocas usando a estrategia greedy
 			Arrays.sort(indexSort);
 			// Da sort no index dos amigos baseado em quantas trocas conseguimos fazer com
@@ -121,57 +119,6 @@ public class Main {
 			s[i].setIndex(indexSort[i]);
 			s[i].setTrocas(trocasSort[i]);
 		}
-	}
-
-	public static void t() {
-		for (int i = 0; i < amg.length; i++) {
-			if (amg[i].getIndex() == 1) {
-				albumA = amg[0].getFa().getColecao();
-
-			}
-		}
-		// Fazer as trocas primeiro com amg[0] ate amigo [4]
-//	public static void trade() {
-//		int contR = 0;// Contador para manter as trocas 1:1
-//		int contD = 0;
-//		for (int i = 0; i < qtd.length; i++) {
-//			if (albumP[i][1] == 0 && albumA[i][1] >= 1) {
-//				albumP[i][1] += 1;
-//				albumA[i][1] -= 1;
-//				contR += 1;
-//
-//				System.out.println("Recebi: " + strP[i]);
-//			}
-//		}
-//	}
-//
-//	public static void troca() {
-//		int contR = 0;// Contador para manter as trocas 1:1
-//		int contD = 0;
-//		for (int i = 0; i < amg.length; i++) {
-//			if (amg[0].getIndex() == 1) {
-//				albumA = amg[0].getFa().getColecao();
-//				trade();
-//			} else if (amg[1].getIndex() == 1) {
-//				trade();
-//			} else if (amg[2].getIndex() == 1) {
-//				trade();
-//			} else if (amg[3].getIndex() == 1) {
-//				trade();
-//			} else if (amg[4].getIndex() == 1) {
-//				trade();
-//			}
-
-//			 else if (albumP[k][1] > 1 && albumA[k][1] == 0) {
-//					albumA[k][1] += 1;
-//					albumP[k][1] -= 1;
-//					contD += 1;
-//					if (contR != contD) {
-//
-//					}
-//					System.out.println("Dei: " + strP[k]);
-//				}
-
 	}
 }
 

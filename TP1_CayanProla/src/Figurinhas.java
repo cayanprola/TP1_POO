@@ -1,11 +1,16 @@
 public class Figurinhas {
-	private int qtd[] = new int[640]; // Quantidade de figs
+	private int qtd[] = new int[640]; // Quantidade de figurinhas
 	private String selecao[] = new String[640]; // Salva a string com index
 	private int colecao[][] = new int[640][2]; // Salva o index na coluna 1 e a quantidade de cada figurinha na coluna 2
 
 	// Constructors
 	Figurinhas() {
 
+	}
+
+	Figurinhas(int newQtd[], String[] newSelecao) {
+		this.selecao = newSelecao;
+		this.qtd = newQtd;
 	}
 
 	Figurinhas(int newQtd[], String[] newSelecao, int newColecao[][]) {
@@ -43,22 +48,9 @@ public class Figurinhas {
 	}
 
 	// Methods
-	public void printA() { // Metodo para printar o index e a quantidade de cada selecao, usado para
-							// efetuar as trocas
+	public void printA() { // Metodo para printar o index e a quantidade de cada selecao
 		for (int i = 0; i < colecao.length; i++) {
 			System.out.println(this.selecao[i] + "; " + this.colecao[i][1]);
 		}
-
 	}
-
-	public void printC() { // Metodo que printa a string, o index e a selecao
-		int cont = 1;
-		for (int i = 0; i < selecao.length; i++) {
-			System.out.println(this.selecao[i] + "; " + this.qtd[i]);
-//			System.out.println(cont);
-			cont += 1;
-		}
-	}
-
-	// Metodos para adicionar e remover figurinhas,
 }

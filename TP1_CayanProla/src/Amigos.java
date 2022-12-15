@@ -9,7 +9,6 @@ public class Amigos {
 		this.fa = newFa;
 		this.index = newIndex;
 		this.trocas = newTrocas;
-
 	}
 
 	// Setters & Getters
@@ -45,7 +44,7 @@ public class Amigos {
 		fa.printA();
 	}
 
-	public void greedy(int a, int trocas[], int index[]) {
+	public void greedy(int a, int trocas[], int index[]) { // Funcao para dar sort nas trocas
 		for (int i = 0; i < a; i++) {
 			int maxIndex = i;
 			for (int j = i + 1; j < a; j++) {
@@ -63,16 +62,8 @@ public class Amigos {
 		}
 	}
 
-	public int[][] arrIndex() {
+	public int[][] getColecaoA() {
 		return fa.getColecao();
-	}
-
-	public void printI(int i) {
-		System.out.println("Index: " + this.index);
-	}
-
-	public void printT(int i) {
-		System.out.println("Trocas: " + this.trocas);
 	}
 
 	public void printIT(int i) {
