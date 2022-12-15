@@ -44,6 +44,7 @@ public class Amigos {
 		fa.printA();
 	}
 
+	@Deprecated
 	public void greedy(int a, int trocas[], int index[]) { // Funcao para dar sort nas trocas
 		for (int i = 0; i < a; i++) {
 			int maxIndex = i;

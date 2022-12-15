@@ -53,4 +53,57 @@ public class Figurinhas {
 			System.out.println(this.selecao[i] + "; " + this.colecao[i][1]);
 		}
 	}
+
+	public void addQtd(int albumP[][], int albumA[][], int i, int cont) {
+		albumP[i][1] += 1;
+		albumA[i][1] -= 1;
+		cont += 1;
+	}
+
+	public void dimQtd(int albumP[][], int albumA[][], int i, int cont) {
+		albumP[i][1] -= 1;
+		albumA[i][1] += 1;
+		cont += 1;
+	}
+
+	/*
+	 * Metodo de trocas das figurinhas, verifica se a nossa quantidade e 0 e a do
+	 * amigo 1, caso seja, efetua a troca e adiciona um valor para o contador Faz o
+	 * mesmo mas para o amigo, tendo assim a troca 1:1
+	 */
+
+	public void troca(Figurinhas cp, Figurinhas ca, int trocasMax) {
+		int albumP[][], albumA[][];
+		int contR = 0;
+		int contD = 0;
+		albumP = new int[qtd.length][2];
+		albumA = new int[qtd.length][2];
+
+		albumP = cp.getColecao();
+		albumA = ca.getColecao();
+		for (int i = 0; i < qtd.length; i++) {
+			if (albumP[i][1] == 0 && albumA[i][1] > 1) {
+				albumP[i][1] += 1;
+				albumA[i][1] -= 1;
+				contR += 1;
+				System.out.println("Recebi: " + this.selecao[i]);
+			} else if (albumP[i][1] > 1 && albumA[i][1] == 0) {
+				albumP[i][1] -= 1;
+				albumA[i][1] += 1;
+				contD += 1;
+				if (contR != contD) {
+					continue;
+				}
+				System.out.println("Dei: " + this.selecao[i]);
+			}
+		}
+		for (int i = 0; i < qtd.length; i++) {
+			if (albumP[i][1] == 0) {
+				System.out.println("Cartas que faltam: " + this.selecao[i]);
+			}
+		}
+		System.out.println("Recebi " + contR);
+		System.out.println("Dei " + contD);
+
+	}
 }
