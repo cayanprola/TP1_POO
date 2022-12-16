@@ -1,6 +1,8 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Figurinhas {
+	Main m;
 	private int qtd[] = new int[640]; // Quantidade de figurinhas
 	private String selecao[] = new String[640]; // Salva a string com index
 	private int colecao[][] = new int[640][2]; // Salva o index na coluna 1 e a quantidade de cada figurinha na coluna 2
@@ -67,15 +69,8 @@ public class Figurinhas {
 		}
 	}
 
-	/*
-	 * Metodo de trocas das figurinhas, verifica se a nossa quantidade e 0 e a do
-	 * amigo 1, caso seja, efetua a troca e adiciona um valor para o contador Faz o
-	 * mesmo mas para o amigo, tendo assim a troca 1:1
-	 */
-
-	public void troca(Figurinhas fp, Figurinhas fa, int trocasMax) {
+	public void add(Figurinhas fp, Figurinhas fa, int contR, int contD) {
 		int albumP[][], albumA[][];
-		int contR = 0, contD = 0;
 
 		albumP = new int[qtd.length][2];
 		albumA = new int[qtd.length][2];
@@ -94,10 +89,16 @@ public class Figurinhas {
 				System.out.println("Recebi: " + this.selecao[i]);
 			}
 		}
-		if (contR == 0) {
-			System.out.println("Nao faltam mais figurinhas.");
-			System.exit(contD);
-		}
+	}
+
+	public void dim(Figurinhas fp, Figurinhas fa, int contR, int contD) {
+		int albumP[][], albumA[][];
+
+		albumP = new int[qtd.length][2];
+		albumA = new int[qtd.length][2];
+		albumP = fp.getColecao();
+		albumA = fa.getColecao();
+
 		for (int j = 0; j < qtd.length; j++) {
 			if (albumP[j][1] > 1 && albumA[j][1] == 0) {
 				albumP[j][1] -= 1;
@@ -109,6 +110,54 @@ public class Figurinhas {
 				}
 				System.out.println("Dei : " + this.selecao[j]);
 			}
+		}
+	}
+
+	public void check(int contR, int contD) {
+		if (contR == 0 || contR == contD) {
+			System.out.println("Parabéns, não falta nenhuma figurinha.");
+			System.exit(1);
+		}
+
+	}
+	/*
+	 * Metodo de trocas das figurinhas, verifica se a nossa quantidade e 0 e a do
+	 * amigo 1, caso seja, efetua a troca e adiciona um valor para o contador Faz o
+	 * mesmo mas para o amigo, tendo assim a troca 1:1
+	 */
+
+	public void troca(Figurinhas fp, Figurinhas fa) {
+		int albumP[][], albumA[][];
+		int contR = 0, contD = 0;
+
+		albumP = new int[qtd.length][2];
+		albumA = new int[qtd.length][2];
+		albumP = fp.getColecao();
+		albumA = fa.getColecao();
+		for (int j = 0; j < qtd.length; j++) {
+			if (albumP[j][1] > 1 && albumA[j][1] == 0) {
+				albumP[j][1] -= 1;
+				albumA[j][1] += 1;
+				contD += 1;
+				if (contR == contD) {
+					System.out.println("Dei : " + this.selecao[j]);
+					break;
+				}
+				System.out.println("Dei : " + this.selecao[j]);
+			}
+				for (int i = 0; i < qtd.length; i++) {
+					if (albumP[i][1] == 0 && albumA[i][1] > 1 || contR < contD) {
+						albumP[i][1] += 1;
+						albumA[i][1] -= 1;
+						contR += 1;
+						if (contR == contD) {
+							System.out.println("Recebi : " + this.selecao[i]);
+							break;
+						}
+						System.out.println("Recebi: " + this.selecao[i]);
+					}
+				}
+				check(contR, contD);
 		}
 		System.out.println();
 		System.out.println("Recebi " + contR);

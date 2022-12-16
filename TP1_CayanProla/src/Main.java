@@ -5,6 +5,7 @@ import java.util.*;
 //@author Cayan Prola & Ricardo Costa
 
 public class Main {
+	static Scanner scan = new Scanner(System.in);
 	// Uso dos padroes P para nos e A para os amigos
 	static String strP[], strA[];
 	static int qtdP[], qtdA[];
@@ -21,35 +22,8 @@ public class Main {
 //		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
 //				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "S1UI",
 //				"CMR", "POR", "GHA", "URU", "KOR" };
-		Scanner scan = new Scanner(System.in);
-		String input;
-		System.out.println("Para qual input deseja ?");
-		System.out.println("1-Input1; 2-Input2; 3-Input3; 0-Sair;");
-		int op = scan.nextInt();
-		do {
-			switch (op) {
-			case 1:
-				input = "input1.txt";
-				principal(input);
 
-				break;
-			case 2:
-				input = "input2.txt";
-				principal(input);
-				break;
-			case 3:
-				input = "input3.txt";
-				principal(input);
-				break;
-			case 0:
-				System.out.println("Obrigado.");
-				System.exit(1);
-			default:
-				System.out.println("Input invalido, tente novamente.");
-				main(args);
-				break;
-			}
-		} while (op != 0);
+		menu();
 
 	}
 
@@ -121,13 +95,8 @@ public class Main {
 				indexSort[i] = index;
 				trocasSort[i] = contTroca();
 			}
-
-//			amigosSort(a, amg);//Funçao que da sort no index e nas trocas dos amigos
-//			int trocasMin = Arrays.stream(trocasSort).min().getAsInt();
-
 			trocasAmg(amg);// Chama o metodo da troca
-			fp.falta(fp);
-
+			fp.falta(fp);// Verifica quantas figurinhas faltam
 			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,16 +113,43 @@ public class Main {
 		return trocas;
 	}
 
+	public static void menu() {
+		String input;
+		System.out.println("Para qual input deseja ?");
+		System.out.println("1-Input1; 2-Input2; 3-Input3; 0-Sair;");
+		int op = scan.nextInt();
+		switch (op) {
+		case 1:
+			input = "input1.txt";
+			principal(input);
+			break;
+		case 2:
+			input = "input2.txt";
+			principal(input);
+			break;
+		case 3:
+			input = "input3.txt";
+			principal(input);
+			break;
+		case 0:
+			System.out.println("Obrigado.");
+			System.exit(1);
+		default:
+			System.out.println("Input invalido, tente novamente.");
+			menu();
+			break;
+		}
+	}
+
 	public static void trocasAmg(Amigos amg[]) {
 		int trocasMax = Arrays.stream(trocasSort).max().getAsInt();
 		while (trocasMax > 0) {
-
 			for (int j = 0; j < amg.length; j++) {
 				for (int i = 0; i < amg.length; i++) {
 					if (amg[i].getTrocas() == trocasMax) {
 						System.out.println("Amigo: " + amg[i].getIndex());
 						System.out.println();
-						amg[i].getFa().troca(fp, fa[i], trocasMax);
+						amg[i].getFa().troca(fp, fa[i]);
 					}
 				}
 				trocasMax -= 1;
