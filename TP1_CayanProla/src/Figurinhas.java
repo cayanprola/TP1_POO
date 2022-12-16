@@ -104,10 +104,7 @@ public class Figurinhas {
 				albumP[j][1] -= 1;
 				albumA[j][1] += 1;
 				contD += 1;
-				if (contR == contD) {
-					System.out.println("Dei : " + this.selecao[j]);
-					break;
-				}
+
 				System.out.println("Dei : " + this.selecao[j]);
 			}
 		}
@@ -126,7 +123,7 @@ public class Figurinhas {
 	 * mesmo mas para o amigo, tendo assim a troca 1:1
 	 */
 
-	public void troca(Figurinhas fp, Figurinhas fa) {
+	public void troca(Figurinhas fp, Figurinhas fa, int k, int trocasMax) {
 		int albumP[][], albumA[][];
 		int contR = 0, contD = 0;
 
@@ -134,30 +131,31 @@ public class Figurinhas {
 		albumA = new int[qtd.length][2];
 		albumP = fp.getColecao();
 		albumA = fa.getColecao();
+
+		for (int i = 0; i < qtd.length; i++) {
+			if (albumP[i][1] == 0 && albumA[i][1] > 1) {
+				albumP[i][1] += 1;
+				albumA[i][1] -= 1;
+				contR += 1;
+				if (contR == contD || contR == m.darSort[k]) {
+					System.out.println("Recebi : " + this.selecao[i]);
+					break;
+				}
+				System.out.println("Recebi: " + this.selecao[i]);
+			}
+		}
 		for (int j = 0; j < qtd.length; j++) {
 			if (albumP[j][1] > 1 && albumA[j][1] == 0) {
 				albumP[j][1] -= 1;
 				albumA[j][1] += 1;
 				contD += 1;
-				if (contR == contD) {
+				if (contR == contD || contD == trocasMax) {
 					System.out.println("Dei : " + this.selecao[j]);
 					break;
 				}
 				System.out.println("Dei : " + this.selecao[j]);
 			}
-				for (int i = 0; i < qtd.length; i++) {
-					if (albumP[i][1] == 0 && albumA[i][1] > 1 || contR < contD) {
-						albumP[i][1] += 1;
-						albumA[i][1] -= 1;
-						contR += 1;
-						if (contR == contD) {
-							System.out.println("Recebi : " + this.selecao[i]);
-							break;
-						}
-						System.out.println("Recebi: " + this.selecao[i]);
-					}
-				}
-				check(contR, contD);
+			check(contR, contD);
 		}
 		System.out.println();
 		System.out.println("Recebi " + contR);

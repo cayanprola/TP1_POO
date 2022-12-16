@@ -10,12 +10,12 @@ public class Main {
 	static String strP[], strA[];
 	static int qtdP[], qtdA[];
 	static int colecaoP[][], colecaoA[][]; // Colecao P pra nos, A para os amigos
-	static int trocasSort[], indexSort[], trocasT[];
+	static int trocasSort[], indexSort[], trocasT[], darSort[];
 	static Figurinhas fp = new Figurinhas(qtdP, strP, colecaoP); // Figurinhas para nos
 	static Caderneta cp = new Caderneta(fp); // Cadernetas para nos
 	static Figurinhas fa[]; // Figurinhas pros amigos
 	static Amigos amg[];
-	static int trocas, index, trocasMax;
+	static int trocas, index, trocasMax, dar;
 
 	public static void main(String[] args) throws FileNotFoundException {
 //		 TODO Auto-generated method stub
@@ -63,6 +63,7 @@ public class Main {
 			amg = new Amigos[a];
 			fa = new Figurinhas[a];
 			trocasSort = new int[a];
+			darSort = new int[a];
 			trocasT = new int[a];
 			indexSort = new int[a];
 			for (int i = 0; i < a; i++) { // Adicionar a quantidade total de figurinhas dos amigos nos arrays
@@ -91,19 +92,22 @@ public class Main {
 				fa[i].setQtd(qtdA);
 				amg[i].setFa(fa[i]);
 				amg[i].setIndex(index);
-				amg[i].setTrocas(contTroca());
+				amg[i].setTrocas(contadorTrocas());
 				indexSort[i] = index;
-				trocasSort[i] = contTroca();
+				trocasSort[i] = contadorTrocas();
+				darSort[i] = contadorDar();
 			}
+
 			trocasAmg(amg);// Chama o metodo da troca
 			fp.falta(fp);// Verifica quantas figurinhas faltam
+
 			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static int contTroca() {
+	public static int contadorTrocas() {
 		trocas = 0;
 		for (int i = 0; i < qtdP.length; i++) {
 			if (colecaoP[i][1] == 0 && colecaoA[i][1] > 1) {
@@ -111,6 +115,16 @@ public class Main {
 			}
 		}
 		return trocas;
+	}
+
+	public static int contadorDar() {
+		dar = 0;
+		for (int i = 0; i < qtdP.length; i++) {
+			if (colecaoP[i][1] > 1 && colecaoA[i][1] == 0) {
+				dar += 1;
+			}
+		}
+		return dar;
 	}
 
 	public static void menu() {
@@ -149,31 +163,11 @@ public class Main {
 					if (amg[i].getTrocas() == trocasMax) {
 						System.out.println("Amigo: " + amg[i].getIndex());
 						System.out.println();
-						amg[i].getFa().troca(fp, fa[i]);
+						amg[i].getFa().troca(fp, fa[i], j, trocasMax);
 					}
 				}
 				trocasMax -= 1;
 			}
-		}
-	}
-
-	@Deprecated
-	public static void amigosSort(int a, Amigos s[]) {
-		/*
-		 * Metodo que chama a funcao greedy para os amigos e seta seus novos valores
-		 */
-		for (int i = 0; i < amg.length; i++) {
-
-			s[i].greedy(a, trocasSort, indexSort); // Sort no valor das trocas usando a estrategia greedy
-			// Da sort no index dos amigos baseado em quantas trocas conseguimos fazer com
-			// eles e seta o seu novo index
-			s[i].setIndex(indexSort[i]);
-			s[i].setTrocas(trocasSort[i]);
-			System.out.println(trocasSort[i]);
-			System.out.println(s[i].getIndex());
-			System.out.println(s[i].getTrocas());
-			s[i].printAmg();
-			System.out.println("-------------------");
 		}
 	}
 }
