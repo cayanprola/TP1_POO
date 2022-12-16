@@ -5,6 +5,10 @@ public class Amigos {
 	private int trocas; // Quantidade de trocas que cada um pode efetuar
 
 	// Constructors
+	Amigos() {
+
+	}
+
 	Amigos(Figurinhas newFa, int newIndex, int newTrocas) {
 		this.fa = newFa;
 		this.index = newIndex;

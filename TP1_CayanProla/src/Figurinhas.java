@@ -5,9 +5,10 @@ public class Figurinhas {
 	private int colecao[][] = new int[640][2]; // Salva o index na coluna 1 e a quantidade de cada figurinha na coluna 2
 
 	// Constructors
-	Figurinhas () {
-		
+	Figurinhas() {
+
 	}
+
 	Figurinhas(int newQtd[], String[] newSelecao, int newColecao[][]) {
 		this.colecao = newColecao;
 		this.selecao = newSelecao;

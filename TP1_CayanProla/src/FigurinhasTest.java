@@ -34,7 +34,7 @@ class FigurinhasTest {
 	}
 
 	@Test
-	public void testGetters() {
+	void testGetters() {
 		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
 				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
 				"CMR", "POR", "GHA", "URU", "KOR" };
@@ -47,7 +47,7 @@ class FigurinhasTest {
 	}
 
 	@Test
-	public void testSetters() {
+	void testSetters() {
 		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
 				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
 				"CMR", "POR", "GHA", "URU", "KOR" };
@@ -61,5 +61,4 @@ class FigurinhasTest {
 		assertTrue(f.getSelecao() == s);
 		assertTrue(f.getColecao() == colecao);
 	}
-
 }
