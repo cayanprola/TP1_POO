@@ -73,15 +73,4 @@ class AmigosTest {
 		assertTrue(a.getTrocas() == trocas);
 	}
 
-	@Test
-	void testPrintAmg() {
-		fail("Not yet implemented"); // TODO
-		String[] s = new String[] { "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL",
-				"FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI",
-				"CMR", "POR", "GHA", "URU", "KOR" };
-		int qtd[] = { 2, 3, 9, 8 };
-		int colecao[][] = { { 2, 3, 4, 9, 10 }, { 0, 1, 2 } };
-		Figurinhas fa = new Figurinhas(qtd, s, colecao);
-	}
-
 }
