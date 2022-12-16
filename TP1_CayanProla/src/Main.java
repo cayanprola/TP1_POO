@@ -31,13 +31,13 @@ public class Main {
 		try {
 			Scanner sc = new Scanner(new File(input));
 			int n = sc.nextInt();
-			strP = new String[n];// Adicionar a quantidade total de figurinhas como o tamanho dos arrays
+			strP = new String[n];// Adiciona a quantidade total de figurinhas como o tamanho dos arrays
 			qtdP = new int[n];
 			colecaoP = new int[n][2];
 			int cont = 0;
 			for (int i = 0; i < n; i++) {
 				cont += 1;
-				strP[i] = sc.next(); // Salva as os valores do txt em arrays
+				strP[i] = sc.next(); // Salva os valores do txt em arrays
 				qtdP[i] = sc.nextInt();
 				colecaoP[i][0] = cont;
 				colecaoP[i][1] = qtdP[i];
@@ -49,7 +49,7 @@ public class Main {
 					cont = 0;
 			}
 			cont = 0;
-			// Setar os valores das figurinhas e seus atributos para a nós
+			// Setar os valores das figurinhas e os seus atributos para nós
 			fp.setColecao(colecaoP);
 			fp.setSelecao(strP);
 			fp.setQtd(qtdP);
@@ -59,7 +59,7 @@ public class Main {
 			fa = new Figurinhas[a];
 			trocasSort = new int[a];
 			darSort = new int[a];
-			for (int i = 0; i < a; i++) { // Adicionar a quantidade total de figurinhas dos amigos nos arrays
+			for (int i = 0; i < a; i++) { // Adiciona a quantidade total de figurinhas dos amigos nos arrays
 				n = sc.nextInt(); // Define o tamanho dos arrays para a quantidade exata de figurinhas
 				strA = new String[n];
 				qtdA = new int[n];
@@ -127,7 +127,7 @@ public class Main {
 
 	/*
 	 * Metodo do menu, pergunta ao usuario qual input txt ele deseja, caso 0 sai do
-	 * programa Caso 1,2 ou 3 executa o metodo principal onde corre todo o programa
+	 * programa, caso 1,2 ou 3 executa o metodo principal onde corre todo o programa
 	 */
 	public static void menu() {
 		String input;

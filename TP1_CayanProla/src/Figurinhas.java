@@ -50,7 +50,7 @@ public class Figurinhas {
 	}
 
 	/*
-	 * Verifica quantas figurinhas que faltam e da print
+	 * Verifica quantas figurinhas faltam e faz print
 	 */
 	public void falta(Figurinhas fp) {
 		int albumP[][];
@@ -63,7 +63,7 @@ public class Figurinhas {
 		}
 	}
 
-	public void check(int contR, int contD) { // Checa se nao falta mais nenhuma figurinha
+	public void check(int contR, int contD) { // Verifica se nao falta mais nenhuma figurinha
 		if (contR == 0 || contR == contD) {
 			System.out.println("Parabéns, não falta nenhuma figurinha.");
 			System.exit(1);
@@ -71,8 +71,8 @@ public class Figurinhas {
 	}
 	/*
 	 * Metodo de trocas das figurinhas, verifica se a nossa quantidade e 0 e a do
-	 * amigo 1, caso seja, efetua a troca e adiciona um valor para o contador Faz o
-	 * mesmo mas para o amigo, tendo assim a troca 1:1 Uso de ifs para prevenir um
+	 * amigo 1, caso seja, efetua a troca e adiciona um valor para o contador e tambem faz o
+	 * mesmo para o amigo, tendo assim a troca 1:1 Uso de ifs para prevenir um
 	 * numero maior de trocas
 	 */
 
@@ -80,7 +80,7 @@ public class Figurinhas {
 		int albumP[][], albumA[][];
 		int contR = 0, contD = 0;
 		/*
-		 * Contador de recebidas e dadas Usado para a verificaçao de 1:1
+		 * Contador de figurinhas recebidas e dadas Usado para a verificaçao de 1:1
 		 */
 
 		albumP = new int[qtd.length][2];
