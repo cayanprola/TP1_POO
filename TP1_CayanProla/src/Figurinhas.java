@@ -56,22 +56,10 @@ public class Figurinhas {
 		}
 	}
 
-	public void addQtd(int albumP[][], int albumA[][], int i, int cont) {
-		albumP[i][1] += 1;
-		albumA[i][1] -= 1;
-		cont += 1;
-	}
-
-	public void dimQtd(int albumP[][], int albumA[][], int i, int cont) {
-		albumP[i][1] -= 1;
-		albumA[i][1] += 1;
-		cont += 1;
-	}
-
-	public void falta(Figurinhas cp) {
+	public void falta(Figurinhas fp) {
 		int albumP[][];
 		albumP = new int[qtd.length][2];
-		albumP = cp.getColecao();
+		albumP = fp.getColecao();
 		for (int i = 0; i < qtd.length; i++) {
 			if (albumP[i][1] == 0) {
 				System.out.println("Cartas que faltam: " + this.selecao[i]);
@@ -85,28 +73,37 @@ public class Figurinhas {
 	 * mesmo mas para o amigo, tendo assim a troca 1:1
 	 */
 
-	public void troca(Figurinhas cp, Figurinhas ca, int trocasMax) {
+	public void troca(Figurinhas fp, Figurinhas fa, int trocasMax) {
 		int albumP[][], albumA[][];
 		int contR = 0, contD = 0;
-		
+
 		albumP = new int[qtd.length][2];
 		albumA = new int[qtd.length][2];
-		albumP = cp.getColecao();
-		albumA = ca.getColecao();
+		albumP = fp.getColecao();
+		albumA = fa.getColecao();
+
 		for (int i = 0; i < qtd.length; i++) {
 			if (albumP[i][1] == 0 && albumA[i][1] > 1) {
 				albumP[i][1] += 1;
 				albumA[i][1] -= 1;
 				contR += 1;
+				if (contR == contD) {
+					System.out.println("Recebi : " + this.selecao[i]);
+					break;
+				}
 				System.out.println("Recebi: " + this.selecao[i]);
 			}
+		}
+		if (contR == 0) {
+			System.out.println("Nao faltam mais figurinhas.");
+			System.exit(contD);
 		}
 		for (int j = 0; j < qtd.length; j++) {
 			if (albumP[j][1] > 1 && albumA[j][1] == 0) {
 				albumP[j][1] -= 1;
 				albumA[j][1] += 1;
 				contD += 1;
-				if(contR == contD) {
+				if (contR == contD) {
 					System.out.println("Dei : " + this.selecao[j]);
 					break;
 				}
