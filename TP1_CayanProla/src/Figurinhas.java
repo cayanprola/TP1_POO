@@ -1,22 +1,13 @@
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class Figurinhas {
-	Main m;
 	private int qtd[] = new int[640]; // Quantidade de figurinhas
 	private String selecao[] = new String[640]; // Salva a string com index
 	private int colecao[][] = new int[640][2]; // Salva o index na coluna 1 e a quantidade de cada figurinha na coluna 2
 
 	// Constructors
-	Figurinhas() {
-
+	Figurinhas () {
+		
 	}
-
-	Figurinhas(int newQtd[], String[] newSelecao) {
-		this.selecao = newSelecao;
-		this.qtd = newQtd;
-	}
-
 	Figurinhas(int newQtd[], String[] newSelecao, int newColecao[][]) {
 		this.colecao = newColecao;
 		this.selecao = newSelecao;
@@ -58,6 +49,9 @@ public class Figurinhas {
 		}
 	}
 
+	/*
+	 * Verifica quantas figurinhas que faltam e da print
+	 */
 	public void falta(Figurinhas fp) {
 		int albumP[][];
 		albumP = new int[qtd.length][2];
@@ -69,63 +63,25 @@ public class Figurinhas {
 		}
 	}
 
-	public void add(Figurinhas fp, Figurinhas fa, int contR, int contD) {
-		int albumP[][], albumA[][];
-
-		albumP = new int[qtd.length][2];
-		albumA = new int[qtd.length][2];
-		albumP = fp.getColecao();
-		albumA = fa.getColecao();
-
-		for (int i = 0; i < qtd.length; i++) {
-			if (albumP[i][1] == 0 && albumA[i][1] > 1) {
-				albumP[i][1] += 1;
-				albumA[i][1] -= 1;
-				contR += 1;
-				if (contR == contD) {
-					System.out.println("Recebi : " + this.selecao[i]);
-					break;
-				}
-				System.out.println("Recebi: " + this.selecao[i]);
-			}
-		}
-	}
-
-	public void dim(Figurinhas fp, Figurinhas fa, int contR, int contD) {
-		int albumP[][], albumA[][];
-
-		albumP = new int[qtd.length][2];
-		albumA = new int[qtd.length][2];
-		albumP = fp.getColecao();
-		albumA = fa.getColecao();
-
-		for (int j = 0; j < qtd.length; j++) {
-			if (albumP[j][1] > 1 && albumA[j][1] == 0) {
-				albumP[j][1] -= 1;
-				albumA[j][1] += 1;
-				contD += 1;
-
-				System.out.println("Dei : " + this.selecao[j]);
-			}
-		}
-	}
-
-	public void check(int contR, int contD) {
+	public void check(int contR, int contD) { // Checa se nao falta mais nenhuma figurinha
 		if (contR == 0 || contR == contD) {
 			System.out.println("Parabéns, não falta nenhuma figurinha.");
 			System.exit(1);
 		}
-
 	}
 	/*
 	 * Metodo de trocas das figurinhas, verifica se a nossa quantidade e 0 e a do
 	 * amigo 1, caso seja, efetua a troca e adiciona um valor para o contador Faz o
-	 * mesmo mas para o amigo, tendo assim a troca 1:1
+	 * mesmo mas para o amigo, tendo assim a troca 1:1 Uso de ifs para prevenir um
+	 * numero maior de trocas
 	 */
 
 	public void troca(Figurinhas fp, Figurinhas fa, int k, int trocasMax) {
 		int albumP[][], albumA[][];
 		int contR = 0, contD = 0;
+		/*
+		 * Contador de recebidas e dadas Usado para a verificaçao de 1:1
+		 */
 
 		albumP = new int[qtd.length][2];
 		albumA = new int[qtd.length][2];
@@ -137,7 +93,7 @@ public class Figurinhas {
 				albumP[i][1] += 1;
 				albumA[i][1] -= 1;
 				contR += 1;
-				if (contR == contD || contR == m.darSort[k]) {
+				if (contR == contD || contR == Main.darSort[k]) {// Chama o valor darSort do main
 					System.out.println("Recebi : " + this.selecao[i]);
 					break;
 				}

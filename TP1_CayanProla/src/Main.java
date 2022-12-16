@@ -5,14 +5,13 @@ import java.util.*;
 //@author Cayan Prola & Ricardo Costa
 
 public class Main {
-	static Scanner scan = new Scanner(System.in);
 	// Uso dos padroes P para nos e A para os amigos
+	static Scanner scan = new Scanner(System.in);
 	static String strP[], strA[];
 	static int qtdP[], qtdA[];
-	static int colecaoP[][], colecaoA[][]; // Colecao P pra nos, A para os amigos
-	static int trocasSort[], indexSort[], trocasT[], darSort[];
+	static int colecaoP[][], colecaoA[][]; // Colecao guarda na coluna 1 o index da carta e na coluna 2 a quantidade
+	static int trocasSort[], darSort[];
 	static Figurinhas fp = new Figurinhas(qtdP, strP, colecaoP); // Figurinhas para nos
-	static Caderneta cp = new Caderneta(fp); // Cadernetas para nos
 	static Figurinhas fa[]; // Figurinhas pros amigos
 	static Amigos amg[];
 	static int trocas, index, trocasMax, dar;
@@ -35,7 +34,6 @@ public class Main {
 			strP = new String[n];// Adicionar a quantidade total de figurinhas como o tamanho dos arrays
 			qtdP = new int[n];
 			colecaoP = new int[n][2];
-
 			int cont = 0;
 			for (int i = 0; i < n; i++) {
 				cont += 1;
@@ -47,25 +45,20 @@ public class Main {
 				 * Uso de um contador para os indexes da selecao e reseta pra ser sempre ate 20
 				 * Usado para efetuar as trocas depois
 				 */
-
 				if (cont == 20)
 					cont = 0;
 			}
 			cont = 0;
-			// Setar os valores das figurinhas e seus atributos para nós
+			// Setar os valores das figurinhas e seus atributos para a nós
 			fp.setColecao(colecaoP);
 			fp.setSelecao(strP);
 			fp.setQtd(qtdP);
-			cp.setF(fp);
-//			cp.printP();
 
 			int a = sc.nextInt(); // Bloco de codigo que repete o de cima mas para os amigos
 			amg = new Amigos[a];
 			fa = new Figurinhas[a];
 			trocasSort = new int[a];
 			darSort = new int[a];
-			trocasT = new int[a];
-			indexSort = new int[a];
 			for (int i = 0; i < a; i++) { // Adicionar a quantidade total de figurinhas dos amigos nos arrays
 				n = sc.nextInt(); // Define o tamanho dos arrays para a quantidade exata de figurinhas
 				strA = new String[n];
@@ -93,7 +86,6 @@ public class Main {
 				amg[i].setFa(fa[i]);
 				amg[i].setIndex(index);
 				amg[i].setTrocas(contadorTrocas());
-				indexSort[i] = index;
 				trocasSort[i] = contadorTrocas();
 				darSort[i] = contadorDar();
 			}
@@ -107,6 +99,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Conta as trocas possiveis com cada amigo
+	 */
 	public static int contadorTrocas() {
 		trocas = 0;
 		for (int i = 0; i < qtdP.length; i++) {
@@ -117,6 +112,9 @@ public class Main {
 		return trocas;
 	}
 
+	/*
+	 * Conta quantas cartas cada amigo precisa
+	 */
 	public static int contadorDar() {
 		dar = 0;
 		for (int i = 0; i < qtdP.length; i++) {
@@ -127,6 +125,10 @@ public class Main {
 		return dar;
 	}
 
+	/*
+	 * Metodo do menu, pergunta ao usuario qual input txt ele deseja, caso 0 sai do
+	 * programa Caso 1,2 ou 3 executa o metodo principal onde corre todo o programa
+	 */
 	public static void menu() {
 		String input;
 		System.out.println("Para qual input deseja ?");
@@ -155,6 +157,12 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Metodo que define qual o maior valor de trocas possiveis, e chama o metodo
+	 * das trocas para cada amigo, diminuindo o valor da maior troca possivel para
+	 * pegar os amigos que tem um valor de troca menor
+	 * 
+	 */
 	public static void trocasAmg(Amigos amg[]) {
 		int trocasMax = Arrays.stream(trocasSort).max().getAsInt();
 		while (trocasMax > 0) {

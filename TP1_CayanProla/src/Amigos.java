@@ -1,8 +1,8 @@
 
 public class Amigos {
 	private Figurinhas fa = new Figurinhas();
-	private int index;
-	private int trocas;
+	private int index; // Index de cada amigo
+	private int trocas; // Quantidade de trocas que cada um pode efetuar
 
 	// Constructors
 	Amigos(Figurinhas newFa, int newIndex, int newTrocas) {
@@ -40,34 +40,13 @@ public class Amigos {
 	}
 
 	// Methods
-	public void printAmg() {
+
+	public void printAmg() {// Print de todas as figurinhas dos amigos
 		fa.printA();
 	}
 
 	@Deprecated
-	public void greedy(int a, int trocas[], int index[]) { // Funcao para dar sort nas trocas
-		for (int i = 0; i < a; i++) {
-			int maxIndex = i;
-			for (int j = i + 1; j < a; j++) {
-				if (trocas[j] > trocas[maxIndex]) {
-					maxIndex = j;
-				}
-			}
-			int temp = index[i];
-			index[i] = index[maxIndex];
-			index[maxIndex] = temp;
-
-			temp = trocas[i];
-			trocas[i] = trocas[maxIndex];
-			trocas[maxIndex] = temp;
-		}
-	}
-
-	public int[][] getColecaoA() {
-		return fa.getColecao();
-	}
-
-	public void printIT(int i) {
+	public void printIT(int i) { // Print no index e quantidade de trocas de cada amigo
 		System.out.println("Index: " + this.index + " Trocas: " + this.trocas);
 	}
 }
